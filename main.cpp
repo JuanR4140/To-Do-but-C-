@@ -3,6 +3,11 @@
 #include <fstream>
 #include <vector>
 
+#include "src/delete.hpp"
+#include "src/menu.hpp"
+#include "src/read.hpp"
+#include "src/write.hpp"
+
 void clear() {
   std::cout << "\033[2J\033[1;1H";
 }
@@ -10,9 +15,11 @@ void clear() {
 int main() {
   std::string choiceStr;
 	int choice;
+  int deleteChoice;
   std::string output;
   std::string todo;
   std::vector<std::string> todoArray;
+  std::vector<std::string> deleteTodoArray;
 
   std::cout
   << "To Do's but C++ by JuanR4140\n"
@@ -47,7 +54,7 @@ int main() {
       readRohilFile.close();
 
 			std::ofstream rohilFile("rohilFile");
-      rohilFile << todo;
+      //rohilFile << todo;
       todoArray.push_back(todo);
 			
 			std::string text;
@@ -85,6 +92,23 @@ int main() {
       << "Deleting a To Do\n"
       << "----------------"
       << std::endl;
+      /*
+      std::ifstream deleteRohilFile("rohilFile");
+      int counter = 1;
+      while(getline(deleteRohilFile, output)) {
+        std::cout << counter << ". " << output << std::endl;
+        counter++;
+        deleteTodoArray.push_back(output);
+      }
+      std::cout
+      << "----------------\n"
+      << "which To Do to delete?\n > ";
+      std::cin >> deleteChoice;
+      deleteChoice--;
+
+      std::cout << deleteChoice << std::endl;
+      std::cout << deleteTodoArray[deleteChoice];
+      */
       break;
     }
     default:

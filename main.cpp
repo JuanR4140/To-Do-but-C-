@@ -37,8 +37,29 @@ int main() {
       << "Enter To Do:\n> ";
       std::getline(std::cin, todo);
 
+      std::ifstream readRohilFile("rohilFile");
+
+      while(getline(readRohilFile, output)){
+        //std::cout << output << std::endl;
+        todoArray.push_back(output);
+      }
+
+      readRohilFile.close();
+
 			std::ofstream rohilFile("rohilFile");
       rohilFile << todo;
+      todoArray.push_back(todo);
+			
+			std::string text;
+      for(int i = 0; i < todoArray.size(); i++) {
+        text += todoArray[i] + '\n';
+      }
+
+			//the text has all the elements in the array seperated with the \n, so you mighy as well push to the file with the text
+      std::ofstream writeRohilFile("rohilFile");
+      writeRohilFile << text;
+      std::cout << text << std::endl;
+      writeRohilFile.close();
       rohilFile.close();
       break;
       }
@@ -49,6 +70,12 @@ int main() {
       << "Viewing To Do's\n"
       << "---------------"
       << std::endl;
+      std::ifstream readRohilFile("rohilFile");
+      int counter = 1;
+      while(getline(readRohilFile, output)) {
+        std::cout << counter << ". " << output << std::endl;
+        counter++;
+      }
       break;
       }
     case 3:
